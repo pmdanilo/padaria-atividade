@@ -1,70 +1,165 @@
 <html>
-  <head>
-    <title>Padaria do Danilo</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0ead6;
-      }
-      h1 {
-        text-align: center;
-        color: #8b4513;
-      }
-      .container {
-        width: 80%;
-        margin: 0 auto;
-      }
-      .product {
-        display: inline-block;
-        width: 25%;
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid #8b4513;
-        border-radius: 10px;
-        text-align: center;
-      }
-      .product img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-      .product h3 {
-        color: #8b4513;
-      }
-      .product p {
-        color: #8b4513;
-      }
-      .product button {
-        background-color: #8b4513;
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Padaria do Danilo</h1>
-    <div class="container">
-      <div class="product">
-        <img
-          src="https://img.freepik.com/fotos-gratis/diferentes-tipos-de-pao-feitos-de-farinha-de-trigo_140725-5648.jpg?w=1380&t=st=1700053238~exp=1700053838~hmac=fa1109dd36be5df7ceddc21b53f48c3e7cebc5e5f65c49fac072c31454fbf388g"
-          alt="Pão"
-        />
-        <h3>Pão Francês</h3>
-        <p>R$ 0,50 a unidade</p>
-        <button onclick="comprar('Pão Francês', 0.50)">Comprar</button>
+
+<head>
+  <title>Padaria do Danilo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0ead6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8b4513;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .product {
+      display: inline-block;
+      width: 25%;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #8b4513;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product h3 {
+      color: #8b4513;
+    }
+
+    .product p {
+      color: #8b4513;
+    }
+
+    .product button {
+      background-color: #8b4513;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Padaria do Danilo</h1>
+  <div class="container">
+    <div class="product">
+      <img
+        src="https://img.freepik.com/fotos-gratis/diferentes-tipos-de-pao-feitos-de-farinha-de-trigo_140725-5648.jpg?w=1380&t=st=1700053238~exp=1700053838~hmac=fa1109dd36be5df7ceddc21b53f48c3e7cebc5e5f65c49fac072c31454fbf388g"
+        alt="Pão" />
+      <h3>Pão Francês</h3>
+      <p>R$ 0,50 a unidade</p>
+      <button id="meuBotao">Comprar</button>
+
+      <div style="margin-top: 30px; display: none; position: fixed; top: 50%;
+      left:50%; transform: translate(-50%, -50%); background-color: white;
+      padding: 6%; border: 1px solid #8b4513; border-radius: 10px; z-index: 1;" id="modalComprar" class="modal">
+        <div class="modal-content">
+          <button class="close" onclick="fecharModal()">fechar</button>
+          <h2>Compra seu pão</h2>
+
+
+          <form>
+            <div style="text-align: center;">
+              <div style="margin-bottom: 10px;">
+                <label for="quantidade">Quantidade:</label>
+                <input style="width: 50px;" type="number" id="quantidade" name="quantidade" value="1" min="1">
+                <span id="valorTotal">Total: R$0.50</span>
+              </div>
+
+              <div style="margin-bottom: 10px;">
+                <label for="nome">Nome:</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+
+              <div style="margin-bottom: 10px;">
+                <label for="endereco">End:</label>
+                <input type="text" id="endereco" name="address">
+              </div>
+
+              <label>Forma de pagamento:</label>
+              <br>
+              <input type="radio" id="pix" name="pagamento" value="pix">
+              <label for="pix">PIX</label>
+
+              <input type="radio" id="dinheiro" name="pagamento" value="dinheiro">
+              <label for="dinheiro">Dinheiro</label>
+
+              <input type="radio" id="cartao" name="pagamento" value="cartao">
+              <label for="cartao">Cartão de crédito/débito</label>
+
+            </div>
+          </form>
+
+          <div id="mensagemSucesso" style="display: none; color: green; font-weight: bold;">
+            Pedido concluído com sucesso!
+          </div>
+
+
+          <button type="submit" onclick="fecharModalComprar()">Concluir pedido</button>
+
+
+        </div>
       </div>
-      <div class="product">
-        <img
-          src="https://img.freepik.com/fotos-gratis/pao-de-queijo-delicioso-assado_23-2149042413.jpg?size=626&ext=jpg&ga=GA1.1.536062151.1700005162&semt=ais"
-          alt="Pão de Queijo"
-        />
-        <h3>Pão de Queijo</h3>
-        <p>R$ 29,90 o quilo</p>
-        <button onclick="comprar('Pão de Queijo', 29.90)">Comprar</button>
-      </div>
+
+
+      <script>
+        document.getElementById('meuBotao').addEventListener('click', function () {
+          document.getElementById('modalComprar').style.display = 'block'
+        });
+
+        function fecharModal() {
+          document.getElementById('modalComprar').style.display = 'none';
+        }
+
+        function fecharModalComprar() {
+
+          document.getElementById('mensagemSucesso').style.display = 'block';
+          setTimeout(function () {
+            document.getElementById('modalComprar').style.display = 'none';
+
+            document.getElementById('mensagemSucesso').style.display = 'none';
+          }, 4000);
+        }
+
+        const inputQuantidade = document.getElementById('quantidade');
+        const valorTotalSpan = document.getElementById('valorTotal');
+        let valorAtual = 0.50;
+
+        inputQuantidade.addEventListener('input', updateValorTotal);
+
+        function updateValorTotal() {
+          const quantidade = parseInt(inputQuantidade.value, 10);
+          if (!isNaN(quantidade) && quantidade >= 1) {
+            valorAtual = quantidade * 0.50;
+            valorTotalSpan.textContent = `Total: R$${valorAtual.toFixed(2)}`;
+          }
+        }
+
+      </script>
     </div>
-  </body>
+    <div class="product">
+      <img
+        src="https://img.freepik.com/fotos-gratis/pao-de-queijo-delicioso-assado_23-2149042413.jpg?size=626&ext=jpg&ga=GA1.1.536062151.1700005162&semt=ais"
+        alt="Pão de Queijo" />
+      <h3>Pão de Queijo</h3>
+      <p>R$ 29,90 o quilo</p>
+      <button onclick="comprar('Pão de Queijo', 29.90)">Comprar</button>
+    </div>
+  </div>
+</body>
+
 </html>
